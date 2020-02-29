@@ -145,6 +145,9 @@ function staticpagepostwidget(json){
     }
     createStaticPagePagination(json);
     window.scrollTo(0, 440); 
+  } else {
+    var $pg = document.getElementById('staticfooter');
+    if($pg) $pg.innerHTML = '<div id="pagination"><div class="controlpager"><span class="nonepostpager">非常抱歉！沒有找到任何分享資料。如有不便，敬請原諒！</span></div></div>';
   }
 }
 
