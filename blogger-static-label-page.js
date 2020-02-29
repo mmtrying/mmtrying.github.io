@@ -149,7 +149,7 @@ function staticpagepostwidget(json){
     window.scrollTo(0, 440); 
   } else {
     var $pg = document.getElementById('staticfooter');
-    if($pg) $pg.innerHTML = '<div id="pagination"><div class="controlpager"><span class="nonepostpager">非常抱歉！沒有找到任何分享資料。如有不便，敬請原諒！</span></div><div><a class="zerolink" href="javascript:window.history.back();">&#9664;&#9664;&#32;&#36820;&#22238;&#19978;&#19968;&#38913;</a></div></div>';
+    if($pg) $pg.innerHTML = '<div id="pagination" class="nonepostwrapper"><div class="nonepostpager"><span>非常抱歉！沒有找到任何分享資料。如有不便，敬請原諒！</span></div><div class="nonepostpager"><a href="javascript:window.history.back();">&#9664;&#9664;&#32;&#36820;&#22238;&#19978;&#19968;&#38913;</a></div></div>';
   }
 }
 
@@ -167,6 +167,6 @@ function addingstaticpagepost($fakeJson){
     document.write('<script type=\"text/javascript\" src=\"'+lbpwPageSetting.blog_domain_url+'/feeds/posts/default'+$specificLabel+'?orderby='+lbpwPageSetting.post_order+'&alt=json-in-script&max-results='+lbpwPageSetting.post_limit+'&start-index='+((lbpwPageSetting.post_limit*((parseInt(getStaticListingPageIndex())||1)-1))+lbpwPageSetting.start_index)+'&callback=staticpagepostwidget"><\/script>');
   } else {
     var $pg = document.getElementById('staticfooter');
-    if($pg) $pg.innerHTML = '<div id="pagination"><div class="controlpager"><span class="nonepostpager">非常抱歉！URL不正確，請檢查清楚再試一次。如有不便，敬請原諒！</span></div><div><a class="zerolink" href="javascript:window.history.back();">&#9664;&#9664;&#32;&#36820;&#22238;&#19978;&#19968;&#38913;</a></div></div>';
+    if($pg) $pg.innerHTML = '<div id="pagination" class="nonepostwrapper"><div class="nonepostpager"><span>非常抱歉！URL不正確，請檢查清楚再試一次。如有不便，敬請原諒！</span></div><div class="nonepostpager"><a href="javascript:window.history.back();">&#9664;&#9664;&#32;&#36820;&#22238;&#19978;&#19968;&#38913;</a></div></div>';
   }
 })();
