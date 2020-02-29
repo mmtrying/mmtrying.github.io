@@ -156,7 +156,7 @@ function staticpagepostwidget(json){
     window.scrollTo(0, 440); 
   } else {
     var $pg = document.getElementById('staticfooter');
-    if($pg) $pg.innerHTML = '<div id="pagination"><div class="controlpager"><span class="nonepostpager">非常抱歉！沒有找到任何分享資料。如有不便，敬請原諒！</span></div><div><a class="zerolink" style="position:relative;left:-1px;font-weight:bold;padding:1px 8px 2px;" href="javascript:window.history.back();">&#9664;&#9664;&#32;&#36820;&#22238;&#19978;&#19968;&#38913;</a></div></div>';
+    if($pg) $pg.innerHTML = '<div id="pagination"><div class="controlpager"><span class="nonepostpager">非常抱歉！沒有找到任何分享資料。如有不便，敬請原諒！</span></div><div><a class="zerolink" href="javascript:window.history.back();">&#9664;&#9664;&#32;&#36820;&#22238;&#19978;&#19968;&#38913;</a></div></div>';
   }
 }
 
