@@ -111,7 +111,7 @@ function rssFeedCallBack(i){
             $pv.style.overflow = 'hidden';
             $pv.style.backgroundPosition = 'center 86px';
             if($pw) $pw.style.backgroundPosition = 'center -20px';
-            window.scrollTo(0, 440); 
+            window.scrollTo(0, 480); 
 
             $staticPageListHeight = $pv.offsetHeight||$pv.clientHeight||0;
             if($staticPageListHeight) $pv.style.height = $staticPageListHeight+'px';
@@ -146,7 +146,7 @@ function staticpagepostwidget(json){
       $staticPageListHeight = 0;
     }
     createStaticPagePagination(json);
-    window.scrollTo(0, 440); 
+    window.scrollTo(0, 480); 
   } else {
     var $pg = document.getElementById('staticfooter');
     if($pg) $pg.innerHTML = '<div id="pagination" class="nonepostwrapper"><div class="nonepostpager"><span>非常抱歉！沒有找到任何分享資料。如有不便，敬請原諒！</span></div><div class="nonepostpager"><a href="javascript:window.history.back();">&#9664;&#9664;&#32;&#36820;&#22238;&#19978;&#19968;&#38913;</a></div></div>';
