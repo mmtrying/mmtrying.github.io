@@ -3,7 +3,7 @@
 //Respecting copyrights and design-effort, please don't delete this introduction when you use this script.
 //Introduction Website: http://personalprojectdesigner.blogspot.com/
 //Most Succeed Website: http://14161.blogspot.com/    <= Adult Site, according to some free sourcing using term changed, there a bit error showing google map & picasa photos.
-//Who interesting blogger development or design, please feel free to contact: +852-64666880 or mmtrying@gmail.com
+//Who interesting blogger development or design, please feel free to contact: +852-64666880 or mmbusiness20c@gmail.com
 
 
 //Before this scripting, please be remined to add "<div id='staticpost'></div><div id='staticfooter'></div>" to your html content.
