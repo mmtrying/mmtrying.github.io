@@ -31,13 +31,14 @@ var $staticNumberOfMainPager = 2;
 var $staticPageIndexRecord = [0,0];
 var $staticPageListHeight = 0;
 
-
-var $specificLabel = (document.URL).split('/label.html?=')[1];
-if($specificLabel!=''){
-  if($specificLabel.indexOf('&')!=-1) $specificLabel = $specificLabel.split('&')[0];
-  $specificLabel = $specificLabel.replace(/\+/g,'/');
+var $specificLabel;
+if((document.URL).indexOf('/label.html?=')!=-1){
+  var $specificLabel = (document.URL).split('/label.html?=')[1];
+  if($specificLabel!=''){
+    if($specificLabel.indexOf('&')!=-1) $specificLabel = $specificLabel.split('&')[0];
+    $specificLabel = $specificLabel.replace(/\+/g,'/');
+  }
 }
-
 
 function getStaticListingPageIndex(){
     var u = document.URL, iQ = '#staticpageindex-', iL = iQ.length;
@@ -164,6 +165,7 @@ function addingstaticpagepost($fakeJson){
     $specificLabel = '/-/'+$specificLabel+'/';
     document.write('<script type=\"text/javascript\" src=\"'+lbpwPageSetting.blog_domain_url+'/feeds/posts/default'+$specificLabel+'?orderby='+lbpwPageSetting.post_order+'&alt=json-in-script&max-results='+lbpwPageSetting.post_limit+'&start-index='+((lbpwPageSetting.post_limit*((parseInt(getStaticListingPageIndex())||1)-1))+lbpwPageSetting.start_index)+'&callback=staticpagepostwidget"><\/script>');
   } else {
-    alert('Error occurred. Please report to the administrator if you have any problem.');
+    var $pg = document.getElementById('staticfooter');
+    if($pg) $pg.innerHTML = '<div id="pagination"><div class="controlpager"><span class="nonepostpager">非常抱歉！URL不正確，請檢查清楚再試一次。如有不便，敬請原諒！</span></div></div>';
   }
 })();
