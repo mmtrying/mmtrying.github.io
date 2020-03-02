@@ -66,19 +66,19 @@ function createStaticPagePagination(json){
           h+='<span>';
           if(totalpage>0){
             h+='<span class="infopage">&#31532;'+idx+'&#38913;</span> ';
-            if(idx>1){h+='<a class="sidepage" title="&#19978;&#19968;&#38913;" href="javascript:void(0);#spage-'+(idx-1)+'" onclick="rssFeedCallBack('+(idx-1)+')">' +pageNaviConf.prevText+'</a>'}
-            if(cpData[0]>1){h+='<a class="gotopage" href="javascript:void(0);#spage-1" onclick="rssFeedCallBack(1)">1</a>'}
+            if(idx>1){h+='<a class="sidepage" title="&#19978;&#19968;&#38913;" href="#spage-'+(idx-1)+'" onclick="rssFeedCallBack('+(idx-1)+')">' +pageNaviConf.prevText+'</a>'}
+            if(cpData[0]>1){h+='<a class="gotopage" href="#spage-1" onclick="rssFeedCallBack(1)">1</a>'}
             h+=(cpData[0]>2)?'<span class="pagegap">&hellip;</span>':'';
             for(var pi=cpData[0];pi<=cpData[1];pi++){
               if(pi>0){
                 if(pi==idx){
                   h+='<span class="currentpage">'+pi+'</span>';
-                }else{ h+='<a class="gotopage" href="javascript:void(0);#spage-'+pi+'" onclick="rssFeedCallBack('+pi+')">'+pi+'</a>'; }
+                }else{ h+='<a class="gotopage" href="#spage-'+pi+'" onclick="rssFeedCallBack('+pi+')">'+pi+'</a>'; }
               }
             }
             h+=(cpData[1]<totalpage-1)?('<span class="pagegap">&hellip;</span>'):'';
-            if(cpData[1]<totalpage){h+='<a class="gotopage" href="javascript:void(0);#spage-'+totalpage+'" onclick="rssFeedCallBack('+totalpage+')">'+totalpage+'</a>'}
-            if(idx<totalpage){h+='<a class="sidepage" title="&#19979;&#19968;&#38913;" href="javascript:void(0);#spage-'+(idx+1)+'" onclick="rssFeedCallBack('+(idx+1)+')">' +pageNaviConf.nextText+'</a>'}
+            if(cpData[1]<totalpage){h+='<a class="gotopage" href="#spage-'+totalpage+'" onclick="rssFeedCallBack('+totalpage+')">'+totalpage+'</a>'}
+            if(idx<totalpage){h+='<a class="sidepage" title="&#19979;&#19968;&#38913;" href="#spage-'+(idx+1)+'" onclick="rssFeedCallBack('+(idx+1)+')">' +pageNaviConf.nextText+'</a>'}
           }
           h+='</span>';
           h+='</div>';
