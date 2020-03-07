@@ -145,11 +145,12 @@ function staticpagepostwidget(json){
       $pv.style.overflow = 'visible';
       $staticPageListHeight = 0;
     }
+    window.scrollTo(0, 0);
     createStaticPagePagination(json);
-    window.scrollTo(0, 0); 
   } else {
     var $pg = document.getElementById('staticfooter');
     if($pg) $pg.innerHTML = '<div id="pagination" class="nonepostwrapper"><div class="nonepostpager"><span>非常抱歉！沒有找到任何分享資料。如有不便，敬請原諒！</span></div><div class="nonepostpager"><a href="javascript:window.history.back();">&#9664;&#9664;&#32;&#36820;&#22238;&#19978;&#19968;&#38913;</a></div></div>';
+    window.scrollTo(0, 0);
   }
 }
 
