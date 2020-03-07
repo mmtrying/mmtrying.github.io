@@ -27,7 +27,8 @@
 //  post_order: 'published'
 //}
 
-var $staticNumberOfMainPager = 2;
+//var $staticNumberOfMainPager = 2;
+
 var $staticPageIndexRecord = [0,0];
 var $staticPageListHeight = 0;
 
