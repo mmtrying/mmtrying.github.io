@@ -23,8 +23,14 @@ var $myBoxDefaultSetting = {
     max_proportion: 0.8,    //..first show of max proportion of user screen.
     layer_background: 'black',
     layer_opacity: 0.8,
-    show_close_button: true,    //..defaulted as false, true is defaulted as 'X', '=image:::'+SRC can use image as a close button, using normal text will be located on the layer corner, if false/null/'' can click layer to close without any button.
+    show_close_button: '=image:::https://farm3.staticflickr.com/2933/13975529140_d0ef7e0655_o.png',    //..defaulted as false, true is defaulted as 'X', '=image:::'+SRC can use image as a close button, using normal text will be located on the layer corner, if false/null/'' can click layer to close without any button.
 
+    album_class: 'default-ecibox-album',    //..this class name is only available when <click_right_image> & <click_left_image> are set below.
+    click_right_image: 'https://c2.staticflickr.com/2/1446/26377249852_f142fbef12_o.png',    //..right button image for applying album to see the photo.
+    click_left_image: 'https://c2.staticflickr.com/2/1577/26377249892_6495c2f874_o.png',   //..left button image for applying album to see the photo.
+    right_style: '',    //..CSS style for your right image when open. Put false/null/'' to show default style.
+    left_style: '',    //..CSS style for your left image when open. Put false/null/'' to show default style.
+	
     close_style: null,    //..CSS style for your close button (close button default on your top-right corner. Cancel style by ''.
     open_image_style: null,    //..CSS style for your image when open. Cancel style by ''.
     open_iframe_style: null,    //..CSS style for your iframe when open. Cancel style by ''.
@@ -68,8 +74,8 @@ function ecibox100fds(tElm,opts){
  var eLoading=null,eTimeLOAD=null,eLayer=null,iElm=null,xClose=null,iCtnr=null;
  
  var aClass = opts.album_class||'default-ecibox-album';
- var oImgR = opts.click_right_image||pageSettingConf.ecbox_right_btn_image||'';
- var oImgL = opts.click_left_image||pageSettingConf.ecbox_left_btn_image||'';
+ var oImgR = opts.click_right_image||'';
+ var oImgL = opts.click_left_image||'';
  var oiR_SY=opts.right_style,oiR_SY=(oiR_SY=='')?'':(oiR_SY||'');
  var oiL_SY=opts.left_style,oiL_SY=(oiL_SY=='')?'':(oiL_SY||'');
  
@@ -212,4 +218,3 @@ function ecibox100fds(tElm,opts){
  
  iOpen(((opnSTY=='customhtml')?'html':opnSTY),(opnSTY=='customhtml')?srcAb:tElm[srcAb])
 };
-
