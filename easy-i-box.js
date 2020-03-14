@@ -70,7 +70,6 @@ function ecibox100fds(tElm,opts){
         if(eCap===true){  if(obj.setCapture){ obj.setCapture(); } else { eval('obj.captureEvents(Event.'+evt.toUpperCase()+')'); }  }
     };
 
-
     opts=opts||{};
     var opnSTY = opts.open_style||'image';  //image,iframe,html,customhtml.
 
