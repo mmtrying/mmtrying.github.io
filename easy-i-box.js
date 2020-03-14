@@ -352,6 +352,7 @@ function ecibox100fds(tElm,opts){
                     if(EVT.preventDefault){EVT.preventDefault()}else{EVT.returnValue=false};
                     EVT.stopPropagation();
                     iClose();
+                    thisExist=false;
                     this.style.cursor='auto';
                 }
             }
