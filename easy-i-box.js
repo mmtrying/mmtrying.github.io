@@ -175,9 +175,9 @@ function ecibox100fds(tElm,opts){
   if(lyr_CLO!==true){
    eLayer.onclick=function(){return false};
    
-   if(lyr_CLO.indexOf('?image:::')!=-1){
+   if(lyr_CLO.indexOf('=image:::')!=-1){
     xClose=$d.createElement('img');
-    xClose.src=lyr_CLO.split('?image:::')[1];
+    xClose.src=lyr_CLO.split('=image:::')[1];
     xClose.style.cssText=oc_SY||('position:absolute;top:-19px;right:-19px;width:48px;height:48px;cursor:pointer;z-index:'+(bzidx+40)+';');
     iCtnr.appendChild(xClose)
    }else{
