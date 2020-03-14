@@ -23,7 +23,7 @@ var $myBoxDefaultSetting = {
     max_proportion: 0.8,    //..first show of max proportion of user screen.
     layer_background: 'black',
     layer_opacity: 0.8,
-    click_layer_close: 'X',    //..'=image:::' at the beginning can use image as a close button, using normal text will be located on the layer corner, is true can click layer to close without any button, don't put false that will be nothing to access close.
+    click_layer_close: 'X',    //..'=image:::' at the beginning can use image as a close button, using normal text like 'X' will be located on the layer corner, is true can click layer to close without any button, don't put false that will be nothing to access close.
 
     close_style: null,    //..CSS style for your close button (close button default on your top-right corner. Cancel style by ''.
     open_image_style: null,    //..CSS style for your image when open. Cancel style by ''.
