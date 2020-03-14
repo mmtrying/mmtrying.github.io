@@ -23,7 +23,7 @@ var $myBoxDefaultSetting = {
     max_proportion: 0.8,    //..first show of max proportion of user screen.
     layer_background: 'black',
     layer_opacity: 0.8,
-    show_close_button: true,    //..true is defaulted as 'X', '=image:::'+SRC can use image as a close button, using normal text will be located on the layer corner, if false/null/'' can click layer to close without any button.
+    show_close_button: true,    //..defaulted as false, true is defaulted as 'X', '=image:::'+SRC can use image as a close button, using normal text will be located on the layer corner, if false/null/'' can click layer to close without any button.
 
     close_style: null,    //..CSS style for your close button (close button default on your top-right corner. Cancel style by ''.
     open_image_style: null,    //..CSS style for your image when open. Cancel style by ''.
@@ -52,7 +52,7 @@ function ecibox100fds(tElm,opts){
  var lyr_BG=opts.layer_background||'black';
  var lyr_OP=opts.layer_opacity,lyr_OP=(parseFloat(lyr_OP)>=0)?parseFloat(lyr_OP):0.8;
  
- var lyr_CLO=opts.show_close_button||'',lyr_CLO=(lyr_CLO===true)?'X':(lyr_CLO==''?true:lyr_CLO);
+ var lyr_CLO=opts.show_close_button||'',lyr_CLO=(lyr_CLO==true)?'X':(lyr_CLO==''?true:lyr_CLO);
  var oc_SY=opts.close_style,oc_SY=(oc_SY=='')?'':(oc_SY||'');
  var o_i_SY='color:orange;font-family:arial;font-weight:bold;z-index:'+(bzidx+1)+';border:10px solid white;background-color:'+iBG+';';
  var oIMG_SY=opts.open_image_style,oIMG_SY=(oIMG_SY=='')?'':(oIMG_SY||o_i_SY);
