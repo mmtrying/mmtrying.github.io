@@ -30,7 +30,7 @@
 //var $staticNumberOfMainPager = 2;
 
 var $staticPageIndexRecord = [0,0];
-var $staticPageListHeight = 0;
+//var $staticPageListHeight = 0;
 
 function getStaticListingPageIndex(){
     var u = document.URL, iQ = '#spage-', iL = iQ.length;
@@ -114,8 +114,8 @@ function rssFeedCallBack(i){
             if($pw) $pw.style.backgroundPosition = 'center -20px';
             window.scrollTo(0, 0); 
 
-            $staticPageListHeight = $pv.offsetHeight||$pv.clientHeight||0;
-            if($staticPageListHeight) $pv.style.height = $staticPageListHeight+'px';
+            //$staticPageListHeight = $pv.offsetHeight||$pv.clientHeight||0;
+            //if($staticPageListHeight) $pv.style.height = $staticPageListHeight+'px';
 
             var $pg = dc.getElementById('staticfooter');
             if($pg){
@@ -140,11 +140,11 @@ function staticpagepostwidget(json){
     $pv.style.backgroundPosition = 'center -4000px';
     if($pw) $pw.style.backgroundPosition = 'center -4000px';
     runJsonInScript(json,staticPageSetting,'','',$pv);
-    if($staticPageListHeight){
+    //if($staticPageListHeight){
       $pv.style.height= 'auto';
       $pv.style.overflow = 'visible';
-      $staticPageListHeight = 0;
-    }
+      //$staticPageListHeight = 0;
+    //}
     window.scrollTo(0, 0);
     createStaticPagePagination(json);
   } else {
