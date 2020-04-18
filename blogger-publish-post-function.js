@@ -53,7 +53,7 @@ function getStaticListingPageIndex(){
 function createStaticPagePagination(json){
     var $pg = document.getElementById('staticfooter');
     if($pg){
-          var totalpage = Math.ceil((parseInt(json.feed.openSearch$totalResults.$t)||0)-(staticPageSetting.start_index+1)/staticPageSetting.post_limit);
+          var totalpage = Math.ceil(((parseInt(json.feed.openSearch$totalResults.$t)||0)-staticPageSetting.start_index+1)/staticPageSetting.post_limit);
           var idx = getStaticListingPageIndex();
           var cpData = calculatePage(idx,totalpage,$staticNumberOfMainPager);
           $staticPageIndexRecord[0] = idx;
