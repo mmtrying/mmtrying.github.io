@@ -84,7 +84,7 @@ function ecibox100fds(tElm,opts){
   if(e&&c){
    e = e.className||'';
    if(e){
-    if(e==c||e.indexOf(' '+c+' ')!=-1||e.indexOf(c+' ')==0||(e.lastIndexOf(' '+c)!=-1&&e.lastIndexOf(' '+c)==e.length-c.length))a=true;
+    if(e==c||e.indexOf(' '+c+' ')!=-1||e.indexOf(c+' ')==0||(e.lastIndexOf(' '+c)!=-1&&e.lastIndexOf(' '+c)==e.length-c.length-1)) a=true;
    }
   }; return a;
  }
