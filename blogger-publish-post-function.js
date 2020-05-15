@@ -34,7 +34,7 @@ var $staticPageIndexRecord = [0,0];
 
 function getStaticListingPageIndex(){
     var u = document.URL, iQ = '#spage-', iL = iQ.length;
-    if(u.indexOf('#spage-')!=-1){
+    if(u.indexOf(iQ)!=-1){
         var v = u.substr(u.lastIndexOf(iQ)+iL), n=0;
         for(var i=0;i<v.length;i++){
             if(isNaN(v.substr(i,1))) break;
