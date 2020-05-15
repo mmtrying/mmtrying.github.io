@@ -30,24 +30,11 @@
 //var $staticNumberOfMainPager = 2;
 
 var $staticPageIndexRecord = [0,0];
-//var $staticPageListHeight = 0;
 
 function getStaticListingPageIndex(){
-    var u = document.URL, iQ = '#spage-', iL = iQ.length;
-    if(u.indexOf(iQ)!=-1){
-        var v = u.substr(u.lastIndexOf(iQ)+iL), n=0;
-        for(var i=0;i<v.length;i++){
-            if(isNaN(v.substr(i,1))) break;
-            n+=1;
-        }
-        if(n==0){
-            return 1;
-        }else{
-            return parseInt(v.substr(0,n))||1;
-        }
-    } else {
-        return 1;
-    }
+    var i = parseInt(getparameter('page')||1)||1;
+    if(i>1 && (document.title).indexOf(' - (第'+i+'頁)')==-1) document.title = document.title + ' - (第'+i+'頁)';
+    return i;
 }
 
 function createStaticPagePagination(json){
@@ -63,73 +50,39 @@ function createStaticPagePagination(json){
           h+='<span>';
           if(totalpage>0){
             h+='<span class="infopage">&#31532;'+idx+'&#38913;</span> ';
-            if(idx>1){h+='<a class="sidepage" title="&#19978;&#19968;&#38913;" href="#spage-'+(idx-1)+'" onclick="rssFeedCallBack('+(idx-1)+')">' +pageNaviConf.prevText+'</a>'}
-            if(cpData[0]>1){h+='<a class="gotopage" href="#spage-1" onclick="rssFeedCallBack(1)">1</a>'}
+            if(idx>1){h+='<a class="sidepage" title="&#19978;&#19968;&#38913;" href="#Page-'+(idx-1)+'" onclick="return rssFeedCallBack('+(idx-1)+')">' +pageNaviConf.prevText+'</a>'}
+            if(cpData[0]>1){h+='<a class="gotopage" href="#Page-1" onclick="return rssFeedCallBack(1)">1</a>'}
             h+=(cpData[0]>2)?'<span class="pagegap">&hellip;</span>':'';
             for(var pi=cpData[0];pi<=cpData[1];pi++){
               if(pi>0){
                 if(pi==idx){
                   h+='<span class="currentpage">'+pi+'</span>';
-                }else{ h+='<a class="gotopage" href="#spage-'+pi+'" onclick="rssFeedCallBack('+pi+')">'+pi+'</a>'; }
+                }else{ h+='<a class="gotopage" href="#Page-'+pi+'" onclick="return rssFeedCallBack('+pi+')">'+pi+'</a>'; }
               }
             }
             h+=(cpData[1]<totalpage-1)?('<span class="pagegap">&hellip;</span>'):'';
-            if(cpData[1]<totalpage){h+='<a class="gotopage" href="#spage-'+totalpage+'" onclick="rssFeedCallBack('+totalpage+')">'+totalpage+'</a>'}
-            if(idx<totalpage){h+='<a class="sidepage" title="&#19979;&#19968;&#38913;" href="#spage-'+(idx+1)+'" onclick="rssFeedCallBack('+(idx+1)+')">' +pageNaviConf.nextText+'</a>'}
+            if(cpData[1]<totalpage){h+='<a class="gotopage" href="#Page-'+totalpage+'" onclick="return rssFeedCallBack('+totalpage+')">'+totalpage+'</a>'}
+            if(idx<totalpage){h+='<a class="sidepage" title="&#19979;&#19968;&#38913;" href="#Page-'+(idx+1)+'" onclick="return rssFeedCallBack('+(idx+1)+')">' +pageNaviConf.nextText+'</a>'}
           }
           h+='</span>';
           h+='</div>';
-          if(totalpage>1) h+='<div class="directpager"><span><span id="directentrydescription">跳頁:</span><input id="directentrypage" type="text" size="3" onkeypress="return onlyNumber(event||window.event)" onpaste="returnNumber(this)" onblur="$documentSelectionEnable=true;" onfocus="$documentSelectionEnable=false;returnNumber(this)" onkeyup="var $v=this.value;if($v!=&quot;&quot;&&($v<=0||$v>'+totalpage+')){this.style.backgroundColor=&quot;red&quot;}else{this.style.backgroundColor=&quot;white&quot;}" value="'+(idx||'?')+'"/><a id="directentrylink" href="javascript:void(0)" onclick="var $d=document; var $v=parseInt(document.getElementById(&quot;directentrypage&quot;).value)||0;if($v!=&quot;&quot;&&$v>0&&$v<='+totalpage+'){this.href=&quot;javascript:void(0);#spage-&quot;+$v;rssFeedCallBack($v);}"><input id="directentrybutton" type="reset" value="&#9658;"/></a><span id="directentryremark" title="** 如果按下頁「&#9658;」後沒有轉頁，表示所輸入的頁數無效或已超出了極限。煩請重新輸入，不便之處，敬請原諒！ **">(?)</span></span></div>';
+          if(totalpage>1) h+='<div class="directpager"><span><span id="directentrydescription">跳頁:</span><input id="directentrypage" type="text" size="3" onkeypress="return onlyNumber(event||window.event)" onpaste="returnNumber(this)" onblur="$documentSelectionEnable=true;" onfocus="$documentSelectionEnable=false;returnNumber(this)" onkeyup="var $v=this.value;if($v!=&quot;&quot;&&($v<=0||$v>'+totalpage+')){this.style.backgroundColor=&quot;red&quot;}else{this.style.backgroundColor=&quot;white&quot;}" value="'+(idx||'?')+'"/><a id="directentrylink" href="javascript:void(0)" onclick="var $d=document; var $v=parseInt(document.getElementById(&quot;directentrypage&quot;).value)||0;if($v!=&quot;&quot;&&$v>0&&$v<='+totalpage+'){this.href=&quot;javascript:void(0);#Page-&quot;+$v;rssFeedCallBack($v);}"><input id="directentrybutton" type="reset" value="&#9658;"/></a><span id="directentryremark" title="** 如果按下頁「&#9658;」後沒有轉頁，表示所輸入的頁數無效或已超出了極限。煩請重新輸入，不便之處，敬請原諒！ **">(?)</span></span></div>';
           h+='</div>';
           $pg.innerHTML=h;
           $pg.style.height = 'auto';
     }
 }
 
-function rssFeedCallBack2(i){
-    var dc = document, uList = dc.getElementById('staticpost'); $staticPageIndexRecord[1] = i||1;
-    var ThisIdx = $staticPageIndexRecord[0]||1, NextIdx = i||1;
-    if(uList) uList.parentNode.id='staticpageindex-'+i;
-    if(ThisIdx != NextIdx){
-        window.location.href = window.location.pathname+'#spage-'+NextIdx;
-        location.reload(true);
-    }
-}
-
 function rssFeedCallBack(i){
-    var dc = document, uList = dc.getElementById('staticpost'); $staticPageIndexRecord[1] = i||1;
-    var ThisIdx = $staticPageIndexRecord[0]||1, NextIdx = i||1;
-    if(uList) uList.parentNode.id='staticpageindex-'+i;
-    if(ThisIdx != NextIdx){
-        var $sp = dc.getElementById('spage'), $sid = 'spage-'+NextIdx;
-        if($sp){
-            if($sp.firstChild) $sp.firstChild.id = $sid;
-        }
-        var $pv = dc.getElementById('staticpost');
-        var $pw = dc.getElementById('staticpostwrapper');
-        if($pv){
-            $pv.style.height = '286px';
-            $pv.style.overflow = 'hidden';
-            $pv.style.backgroundPosition = 'center 86px';
-            if($pw) $pw.style.backgroundPosition = 'center -20px';
-            window.scrollTo(0, 0); 
-
-            //$staticPageListHeight = $pv.offsetHeight||$pv.clientHeight||0;
-            //if($staticPageListHeight) $pv.style.height = $staticPageListHeight+'px';
-
-            var $pg = dc.getElementById('staticfooter');
-            if($pg){
-                var pgH = $pg.offsetHeight||$pg.clientHeight||0;
-                if(pgH) $pg.style.height = pgH+'px';
-                $pg.innerHTML='';
-            }
-            while($pv.firstChild) $pv.removeChild($pv.firstChild);
-        }
-        var s=dc.createElement('script');
-        dc.body.appendChild(s);
-        s.type='text/javascript';
-        s.src=staticPageSetting.blog_domain_url+'/feeds/posts/default?orderby='+staticPageSetting.post_order+'&alt=json-in-script&max-results=0&start-index=1&callback=addingstaticpagepost';
+    var u = document.URL, n = 'page', idx = getparameter(n), a = location||window.location; i = i||1;
+    if(idx){
+        if(u.indexOf('?'+n+'='+idx)!=-1) u = u.replace('?'+n+'='+idx,(i==1)?'':('?'+n+'='+i));
+        if(u.indexOf('&'+n+'='+idx)!=-1) u = u.replace('&'+n+'='+idx,(i==1)?'':('&'+n+'='+i));
+    } else if(i>1){
+        u = u + ((u.indexOf('?')!=-1)?'&':'?') + n + '=' + i;
     }
+    a.href = u;
+    return false;
 }
 
 function staticpagepostwidget(json){
@@ -140,11 +93,8 @@ function staticpagepostwidget(json){
     $pv.style.backgroundPosition = 'center -4000px';
     if($pw) $pw.style.backgroundPosition = 'center -4000px';
     runJsonInScript(json,staticPageSetting,'','',$pv);
-    //if($staticPageListHeight){
-      $pv.style.height= 'auto';
-      $pv.style.overflow = 'visible';
-      //$staticPageListHeight = 0;
-    //}
+    $pv.style.height= 'auto';
+    $pv.style.overflow = 'visible';
     window.scrollTo(0, 0);
     createStaticPagePagination(json);
   } else {
