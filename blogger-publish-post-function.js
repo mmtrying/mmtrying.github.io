@@ -74,14 +74,15 @@ function createStaticPagePagination(json){
 }
 
 function rssFeedCallBack(i){
-    var u = document.URL, n = 'page', idx = getparameter(n), a = location||window.location; i = i||1;
-    if(idx){
-        if(u.indexOf('?'+n+'='+idx)!=-1) u = u.replace('?'+n+'='+idx,(i==1)?'':('?'+n+'='+i));
-        if(u.indexOf('&'+n+'='+idx)!=-1) u = u.replace('&'+n+'='+idx,(i==1)?'':('&'+n+'='+i));
+    var u = document.URL, n = 'page', x = getparameter(n), i = i||1;
+    if(x){
+        if(u.indexOf('?'+n+'='+x)!=-1) u = u.replace('?'+n+'='+x,(i==1)?'':('?'+n+'='+i));
+        if(u.indexOf('&'+n+'='+x)!=-1) u = u.replace('&'+n+'='+x,(i==1)?'':('&'+n+'='+i));
     } else if(i>1){
-        u = u + ((u.indexOf('?')!=-1)?'&':'?') + n + '=' + i;
+        x = u.split('#');
+        u = x[0] + ((u.indexOf('?')!=-1)?'&':'?') + n + '=' + i + (x[1]?('#'+x[1]):'');
     }
-    a.href = u;
+    (location||window.location).href = u;
     return false;
 }
 
