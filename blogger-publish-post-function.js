@@ -97,7 +97,7 @@ function staticpagepostwidget(json){
     $pv.style.height= 'auto';
     $pv.style.overflow = 'visible';
     //window.scrollTo(0, 0);
-    runNativeAds($pv);
+    runNativeAds($pv,((dc.URL).indexOf('#listview')!=-1)?1:0);
     createStaticPagePagination(json);
   } else {
     var $pg = document.getElementById('staticfooter');
