@@ -26,10 +26,8 @@
 //  post_textlength: 99999,
 //  post_order: 'published'
 //}
-
 //var $staticNumberOfMainPager = 2;
 
-var $staticPageIndexRecord = 0;
 
 function getStaticListingPageIndex(){
     var i = parseInt(getparameter('page')||1)||1;
@@ -43,7 +41,6 @@ function createStaticPagePagination(json){
           var totalpage = Math.ceil(((parseInt(json.feed.openSearch$totalResults.$t)||0)-staticPageSetting.start_index+1)/staticPageSetting.post_limit);
           var idx = getStaticListingPageIndex();
           var cpData = calculatePage(idx,totalpage,$staticNumberOfMainPager);
-          $staticPageIndexRecord = idx;
 
           var h ='<div id="pagination">';
           h+='<div class="controlpager">';
