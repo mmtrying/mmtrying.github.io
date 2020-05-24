@@ -29,7 +29,7 @@
 
 //var $staticNumberOfMainPager = 2;
 
-var $staticPageIndexRecord = [0,0];
+var $staticPageIndexRecord = 0;
 
 function getStaticListingPageIndex(){
     var i = parseInt(getparameter('page')||1)||1;
@@ -43,7 +43,7 @@ function createStaticPagePagination(json){
           var totalpage = Math.ceil(((parseInt(json.feed.openSearch$totalResults.$t)||0)-staticPageSetting.start_index+1)/staticPageSetting.post_limit);
           var idx = getStaticListingPageIndex();
           var cpData = calculatePage(idx,totalpage,$staticNumberOfMainPager);
-          $staticPageIndexRecord[0] = idx;
+          $staticPageIndexRecord = idx;
 
           var h ='<div id="pagination">';
           h+='<div class="controlpager">';
@@ -104,14 +104,6 @@ function staticpagepostwidget(json){
     if($pg) $pg.innerHTML = '<div id="pagination" class="nonepostwrapper"><div class="nonepostpager"><span>非常抱歉！沒有找到任何分享資料。如有不便，敬請原諒！</span></div><div class="nonepostpager"><a href="javascript:window.history.back();">&#9664;&#9664;&#32;&#36820;&#22238;&#19978;&#19968;&#38913;</a></div></div>';
     //window.scrollTo(0, 0);
   }
-}
-
-function addingstaticpagepost($fakeJson){
-    var $d = document;
-    var $s=$d.createElement('script');
-    $d.body.appendChild($s);
-    $s.type='text/javascript';
-    $s.src=staticPageSetting.blog_domain_url+'/feeds/posts/default?orderby='+staticPageSetting.post_order+'&alt=json-in-script&max-results='+staticPageSetting.post_limit+'&start-index='+((staticPageSetting.post_limit*((parseInt($staticPageIndexRecord[1])||1)-1))+staticPageSetting.start_index)+'&callback=staticpagepostwidget';
 }
 
 (function(){
