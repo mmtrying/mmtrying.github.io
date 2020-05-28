@@ -6,6 +6,7 @@
 //https://spreadsheets.google.com/feeds/list/18xcLhlutxAhjyvFTDf6DkkNjo2Oda1mVg6pAEN6Wqow/1/public/basic?alt=json-in-script&callback=abc&tq=select%20month&sq=index%3E2%20and%20index%3C9
 //https://spreadsheets.google.com/feeds/list/18xcLhlutxAhjyvFTDf6DkkNjo2Oda1mVg6pAEN6Wqow/1/public/full?alt=json-in-script&callback=abc&sq=month=jan%20or%20month=Mar
 //https://spreadsheets.google.com/feeds/list/18xcLhlutxAhjyvFTDf6DkkNjo2Oda1mVg6pAEN6Wqow/1/public/full?alt=json-in-script&callback=abc&sq=index%3C3
+//https://spreadsheets.google.com/feeds/cells/1NqQz613Sj0ZbWdku7ttfBARcIf7C_gr44z8kWLsilKc/1/public/basic?tt=1590401605542&alt=json-in-script&&min-col=2&max-col=2
 
 //Martin Ma is an expert who have stidied javascript & blogger design for years.
 //Respecting copyrights and design-effort, please don't delete this introduction when you use this script.
@@ -13,27 +14,34 @@
 //Most Succeed Website: http://14161.blogspot.com/    <= Adult Site, according to some free sourcing using term changed, there a bit error showing google map & picasa photos.
 //Who interesting blogger development or design, please feel free to contact: +852-64666880 or mmbusiness20c@gmail.com
 
+
 //make sure the Google Spreadsheet is published before using this Json-Feeding function.
-var $thisTime = (new Date()).getTime();
 var publishedspreadsheetgoogle = {
-    excel_id: '1NqQz613Sj0ZbWdku7ttfBARcIf7C_gr44z8kWLsilKc',    //necessary id number from the Google Spreadsheet.
+    ulwrapper_id: 'staticpostwrapper',
+    ul_id: 'staticpost',    //*necessary id for loading & listing the main feeds.
+    li_class: 'text notpage',    //post listing class in ul element.
+    postwrapper_class: 'post-wrapper',    //div wrapper of the feeds in each listing element.
+    pager_id: 'staticfooter',    //*necessary id for input pager into the element.
+    show_page: 3,    //showing main number of pagers as minimum is 3.
+
+    excel_id: '1k6y2r_MfgWMDjLodal7fUBzfMMbWGkwJX8-xWj-MVls',    //necessary id number from the Google Spreadsheet.
+    grid_id: '287097087',    //default 0 as the first page, grid-id number for specifying page.
     start_index: 1,
-    post_limit: 3,    //showing number of row-data on each page.
-    order_by: '',    //can rank the listing in order by the specific column title, eg:  'Month'.  Default rank order by first column.
-    reverse: false,    //whether determine the rank order is either ascending & descending ('false' = ascending / 'true' = descending).
+    post_limit: 5,    //showing number of row-data on each page.
+    order_by: 'RANDOMINDEX',    //can rank the listing in order by the specific column title, eg:  'Month'.  Default rank order by first column.
+    reverse: true,    //whether determine the rank order is either ascending & descending ('false' = ascending / 'true' = descending).
     query: '',    //searching Query which is contained in the cells by each row. Eg: 'Jan', then results are shown as 'Jan' or 'Jan *' or '* Jan' or '* Jan *'.  (*=AnyText)
-    sortquery: 'ReadyToPost=ok',    //matching the condition in specific column (specified by column heading) by each row.  The condition can be set as '>', '<', & '='. Eg: 'Month=Jan or Month=Mar', 'Sequence>=2 and Sequence<10', etc.  As per column heading are specified without spacing & case-sensitive, therefore for example, 'Book Time', 'BookTime', & 'Bo OK Time' will be resulted as the same specification as 'booktime'. Moreover, If there are duplicate specified headings, please put '_#' at the end of your targeted sorting column.  Eg: if three heading names are 'BookTime', 'Book time', & 'Bo OK Time', the corrective queries are sorted by 'booktime', 'booktime_2', & 'booktime_3.
-    subject: ['Sequence','CharacterNameEnglish','CharacterNameChinese','ImageSource','PostCount','ReadyToPost']    //determine which columns (specified by column heading from left to right) are taken for the feed data. If headings are same, you need to put duplicate name in the array also.
+    sortquery: '',    //matching the condition in specific column (specified by column heading) by each row.  The condition can be set as '>', '<', & '='. Eg: 'Month=Jan or Month=Mar', 'Sequence>=2 and Sequence<10', etc.  As per column heading are specified without spacing & case-sensitive, therefore for example, 'Book Time', 'BookTime', & 'Bo OK Time' will be resulted as the same specification as 'booktime'. Moreover, If there are duplicate specified headings, please put '_#' at the end of your targeted sorting column.  Eg: if three heading names are 'BookTime', 'Book time', & 'Bo OK Time', the corrective queries are sorted by 'booktime', 'booktime_2', & 'booktime_3.
+    subject: ['CHECKING','DATAINDEX','ALLHTML','RANDOMINDEX']    //determine which columns (specified by column heading from left to right) are taken for the feed data. If headings are same, you need to put duplicate name in the array also.
 }
-var $staticNumberOfMainPager = 3;
 
 
- function createStaticPagePagination(json){
-    var $pg = document.getElementById('staticfooter');
+function createStaticPagePagination(json,myOptions){
+    var $pg = document.getElementById(myOptions.pager_id);
     if($pg){
-          var totalpage = Math.ceil(((parseInt(json.feed.openSearch$totalResults.$t)||0)-publishedspreadsheetgoogle.start_index+1)/publishedspreadsheetgoogle.post_limit);
+          var totalpage = Math.ceil(((parseInt(json.feed.openSearch$totalResults.$t)||0)-myOptions.start_index+1)/myOptions.post_limit);
           var idx = getStaticListingPageIndex();
-          var cpData = calculatePage(idx,totalpage,$staticNumberOfMainPager);
+          var cpData = calculatePage(idx,totalpage,myOptions.show_page);
 
           var h ='<div id="pagination">';
           h+='<div class="controlpager">';
@@ -99,51 +107,57 @@ function initializingexcelgdata($json,$setting,wElmUL){
     var r = Math.min((typeof $json.feed == 'undefined')?0:(($json.feed.entry)?($json.feed.entry.length||0):0),$setting.post_limit);
     for(var i=0;i<r;i++){
         var entry = $json.feed.entry[i], v = [];
-        h += (wElmUL)?'':('<li style="position:relative">');
-        h += '<div>';
+        h += (wElmUL)?'':('<li class="'+($setting.li_class||'')+'" style="position:relative">');
+        h += '<div class="'+($setting.postwrapper_class||'')+'" style="position:relative"><div><div><div>';
         for(var ii=0;ii<n;ii++){
             v[i] = eval('entry.gsx$'+a[ii]+'.$t')||'';
             if(v[i]){
-                h += '<div class="'+a[ii]+'"><span>'+v[i]+'</span></div>';
+                h += '<div class="'+a[ii]+'">'+v[i]+'</div>';
             }
         }
-        h += '</div>';
+        h += '</div></div></div></div>';
         h += (wElmUL)?'':'</li>';
         if(wElmUL){
           $wLi[i]=document.createElement('li');
+          $wLi[i].className = $setting.li_class||'';
           $wLi[i].style.position = 'relative';
           $wLi[i].innerHTML=h;
           wElmUL.appendChild($wLi[i]);
+          returnListingPost($wLi[i]);
+          showTitleDots($wLi[i]);
         }else{document.write(h)}
         h = '';
     }
 }
-function staticpagepostwidget(json){
+function staticpagepostwidget(json,myOptions){
   var $jL = parseInt(json.feed.openSearch$totalResults.$t)||0, dc = document;
-  var $pv = dc.getElementById('staticpost');
-  var $pw = dc.getElementById('staticpostwrapper');
-  if($pv&&$jL>=publishedspreadsheetgoogle.start_index){
+  var $pv = dc.getElementById(myOptions.ul_id);
+  var $pw = dc.getElementById(myOptions.ulwrapper_id);
+  if($pv&&$jL>=myOptions.start_index){
     $pv.style.backgroundPosition = 'center -4000px';
     if($pw) $pw.style.backgroundPosition = 'center -4000px';
     var postnumber = (typeof json.feed == 'undefined')?0:((json.feed.entry)?(json.feed.entry.length||0):0);
     if(postnumber>0){
-        initializingexcelgdata(json,publishedspreadsheetgoogle,$pv);
+        initializingexcelgdata(json,myOptions,$pv);
         $pv.style.height= 'auto';
         $pv.style.overflow = 'visible';
-        //window.scrollTo(0, 0);
-        createStaticPagePagination(json);
+        runNativeAds($pv,((dc.URL).indexOf('#listview')!=-1)?1:0);
+        createStaticPagePagination(json,myOptions);
     }
   } else {
     $pv.style.backgroundPosition = 'center -4000px';
     if($pw) $pw.style.backgroundPosition = 'center -4000px';
-    var $pg = document.getElementById('staticfooter');
+    $pv.style.height= 'auto';
+    var $pg = document.getElementById(myOptions.pager_id);
     if($pg) $pg.innerHTML = '<div id="pagination" class="nonepostwrapper"><div class="nonepostpager"><span>非常抱歉&#65281;沒有找到任何分享資料&#12290;如有不便&#65292;敬請原諒&#65281;</span></div><div class="nonepostpager"><a href="javascript:window.history.back();">&#9664;&#9664;&#32;&#36820;&#22238;&#19978;&#19968;&#38913;</a></div></div>';
-    //window.scrollTo(0, 0);
   }
 }
 
+function initialjsonfeeds($json){
+    staticpagepostwidget($json,publishedspreadsheetgoogle);
+}
 (function(){
     var q = encodeURIComponent(publishedspreadsheetgoogle.query||'');
     var sq = encodeURIComponent((publishedspreadsheetgoogle.sortquery||'').toLowerCase());
-    document.write('<script type=\"text/javascript\" src=\"https://spreadsheets.google.com/feeds/list/'+ publishedspreadsheetgoogle.excel_id +'/1/public/full?tt='+$thisTime+'&alt=json-in-script&start-index='+((publishedspreadsheetgoogle.post_limit*((parseInt(getStaticListingPageIndex())||1)-1))+publishedspreadsheetgoogle.start_index)+'&max-results='+(publishedspreadsheetgoogle.post_limit||0)+'&orderby='+(publishedspreadsheetgoogle.order_by||'')+'&reverse='+(publishedspreadsheetgoogle.reverse||'false')+(q?('&q='+q):'')+(sq?('&sq='+sq):'')+'&callback=staticpagepostwidget"><\/script>');
+    document.write('<script type=\"text/javascript\" src=\"https://spreadsheets.google.com/feeds/list/'+ publishedspreadsheetgoogle.excel_id +'/1/public/full?tt='+((new Date()).getTime()||'')+'&gid='+(publishedspreadsheetgoogle.grid_id||0)+'&alt=json-in-script&start-index='+((publishedspreadsheetgoogle.post_limit*((parseInt(getStaticListingPageIndex())||1)-1))+publishedspreadsheetgoogle.start_index)+'&max-results='+(publishedspreadsheetgoogle.post_limit||0)+'&orderby='+(publishedspreadsheetgoogle.order_by||'').toLowerCase()+'&reverse='+(publishedspreadsheetgoogle.reverse||'false')+(q?('&q='+q):'')+(sq?('&sq='+sq):'')+'&callback=initialjsonfeeds"><\/script>');
 })();
