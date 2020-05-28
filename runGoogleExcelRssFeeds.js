@@ -1,3 +1,35 @@
+//<div id="staticpostwrapper"><div class="staticpostwrapper"><ul id="staticpost" class="excelpost"></ul></div></div>
+//<div id="staticfooter"></div>
+//<div id="exoclicknativepost" class="exoclicknativepost">
+//<script type="application/javascript" data-idzone="3859342" src="https://a.realsrv.com/nativeads.js"></script>
+function runNativeAds(u,isListView){
+    if(u){
+        var d = document, e = u.nodeName=='UL'?'li':'div';
+        var n = 4 - (u.childNodes.length % 4), t = [], w = [];
+        for(var i=0;i<n;i++){
+            t[i] = d.createElement(e);
+            t[i].className = 'text notpage';
+            u.appendChild(t[i]);
+            if(i==n-1){
+                e = d.getElementById('exoclicknativepost');
+                if(e){
+                    w[i] = ((u.offsetWidth||u.clientWidth)/4*n)+'px';
+                    t[i].id = 'nativelistingads';
+                    t[i].style.width = isListView?'auto':w[i];
+                    t[i].innerHTML = '<input type="hidden" name="nativelistingads" value="'+w[i]+'"/>';
+                    t[i].appendChild(e); 
+                    e.style.display = 'list-item';
+                } else {
+                    t[i].style.display = 'none';
+                }
+            } else {
+                t[i].style.display = 'none';
+            }
+        }
+    }
+}
+
+
 //https://spreadsheets.google.com/feeds/list/18xcLhlutxAhjyvFTDf6DkkNjo2Oda1mVg6pAEN6Wqow/1/public/basic?alt=json-in-script&callback=abc
 //https://spreadsheets.google.com/feeds/list/18xcLhlutxAhjyvFTDf6DkkNjo2Oda1mVg6pAEN6Wqow/1/public/full?alt=json-in-script&callback=abc
 //https://spreadsheets.google.com/feeds/list/18xcLhlutxAhjyvFTDf6DkkNjo2Oda1mVg6pAEN6Wqow/1/public/full?alt=json-in-script&callback=abc&start-index=1&max-results=2&orderby=column:year&reverse=true
