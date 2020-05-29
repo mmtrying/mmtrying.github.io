@@ -1,3 +1,30 @@
+function runNativeAds(u,isListView){
+    if(u){
+        var d = document, e = u.nodeName=='UL'?'li':'div';
+        var n = 4 - (u.childNodes.length % 4), t = [], w = [];
+        for(var i=0;i<n;i++){
+            t[i] = d.createElement(e);
+            t[i].className = 'text notpage';
+            u.appendChild(t[i]);
+            if(i==n-1){
+                e = d.getElementById('exoclicknativepost');
+                if(e){
+                    w[i] = ((u.offsetWidth||u.clientWidth)/4*n)+'px';
+                    t[i].id = 'nativelistingads';
+                    t[i].style.width = isListView?'auto':w[i];
+                    t[i].innerHTML = '<input type="hidden" name="nativelistingads" value="'+w[i]+'"/>';
+                    t[i].appendChild(e); 
+                    e.style.display = 'list-item';
+                } else {
+                    t[i].style.display = 'none';
+                }
+            } else {
+                t[i].style.display = 'none';
+            }
+        }
+    }
+}
+
 //This is open source scripted by Martin Ma, who is personal project designer in Hong Kong.
 //Martin Ma is an expert who have stidied blogger design for years.
 //Respecting copyrights and design-effort, please don't delete this introduction when you use this script.
