@@ -11,14 +11,14 @@
     var e = document.getElementById('box');
      //clear( box );
     while(e.childNodes[0]) e.removeChild( e.childNodes[0] );
-    data_setting({
+    data_setting {
       msg: 'Barcode-Value',
       dim: 256,  //size in pixel.
       rct: false,  //Use Rectangle Style?
       pad: 1,  //padding in no. of mini-square.
       pal: [ '#000', '#fff' ],  //Front & Background Color.
       vrb: 1    //Optimized SVG Graphic Size, 1=true, 0=false.
-    });
+    };
     e.appendChild( addDataMatrixBarcode(data_setting) );
 --------------------------------------------*/
 
