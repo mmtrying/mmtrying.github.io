@@ -11,7 +11,7 @@
     var e = document.getElementById('box');
      //clear( box );
     while(e.childNodes[0]) e.removeChild( e.childNodes[0] );
-    data_setting {
+    var data_setting = {
       msg: 'Barcode-Value',
       dim: 256,  //size in pixel.
       rct: false,  //Use Rectangle Style?
