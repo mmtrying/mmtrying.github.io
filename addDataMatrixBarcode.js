@@ -11,7 +11,7 @@
     var e = document.getElementById('box');
      //clear( box );
     while(e.childNodes[0]) e.removeChild( e.childNodes[0] );
-    DATAMatrix({
+    data_setting({
       msg: 'Barcode-Value',
       dim: 256,  //size in pixel.
       rct: false,  //Use Rectangle Style?
@@ -19,7 +19,7 @@
       pal: [ '#000', '#fff' ],  //Front & Background Color.
       vrb: 1    //Optimized SVG Graphic Size, 1=true, 0=false.
     });
-    e.appendChild( addDataMatrixBarcode() );
+    e.appendChild( addDataMatrixBarcode(data_setting) );
 --------------------------------------------*/
 
 function addDataMatrixBarcode( Q ) {
