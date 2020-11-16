@@ -20,3 +20,24 @@
       HTML)    <svg class="barcode" jsbarcode-format="upc" jsbarcode-value="123456789012" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"></svg>
       CODE)    JsBarcode(".barcode").init();
 */
+
+/* 
+  format:"auto" (CODE128),  //=String
+  width:2,  //=Number
+  height:100,  //=Number
+  displayValue:true,  //=Boolean
+  fontOptions:"",  //=String
+  font:"monospace",  //=String
+  textAlign:"center",  //=String
+  textPosition:"bottom",  //=String
+  textMargin:2,  //=Number
+  fontSize:20,  //=Number
+  background:"#ffffff",  //=String (CSS color)
+  lineColor:"#000000",  //=String (CSS color)
+  margin:10,  //=Number
+  marginTop:undefined,  //=Number
+  marginBottom:undefined,  //=Number
+  marginLeft:undefined,  //=Number
+  marginRight:undefined,  //=Number
+  valid:function(valid){},  //=Function
+*/
