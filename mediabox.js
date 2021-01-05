@@ -406,12 +406,12 @@
 
 
 
-          var b_zmo = 'blinkin-cells-zoomout';
+          var b_zmo = 'blinkin-cells-zoomout';    //Not yet settle.!
           var b_rdm = 'blinkin-cells-random';
           var b_lrd = 'blinkin-lines-rightdown';
           var b_llu = 'blinkin-lines-leftup';
           var b_iw = 'blinkin-inward';
-          var b_ow = 'blinkin-outward';
+          var b_ow = 'blinkin-outward';    //Not yet settle.!
           var $random_blinkstyles = [b_zmo,b_rdm,b_lrd,b_llu,b_iw,b_ow];
 
           var s_rdm = 'slidein-cells-random';
