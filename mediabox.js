@@ -1,4 +1,3 @@
-alert('text');
 var $defaultMediaBoxSetting = {
   default_id: 'mymediabox',
   //element of scroll
