@@ -1,15 +1,19 @@
 var $defaultMediaBoxSetting = {
   default_id: 'mymediabox',
-  restore_element_scroll: document.getElementById('bodyframe'),  //element of scroll
+  //element of scroll
+  restore_element_scroll: document.body,
   close_button: true,
   close_style: '',
-  zoom_button: true,  //only for image box style
+  //only for image box style
+  zoom_button: true,
   zoom_back_icon: 'https://lh5.googleusercontent.com/bQPX7t_XGK9ZKZFTFA9dT7710FlU5LC_GwnEn5wm-Z-3rC8wcbEAJtYe7OgO7oWg-LU',
   zoom_in_icon: 'https://lh5.googleusercontent.com/dafQlHc3bgq5n8CiXz7U86iHhVry4cnMOzp_YWYYbDY3b8II1Ksr4s73giXyvQdO-bY',
   zoom_out_icon: 'https://lh5.googleusercontent.com/WlCERmyTcWv19gQth4wm0p6VOYwz2MN5_62GZ4zt_zwxDrKb9l36wsvUZ8Q--h2ObPI',
-  box_size: '80%',  //support: % or px, image as max-size, '400px 600px', '80% 90%', as height width, '80%' as both height & width.
-  refer_attribute: 'rel',
-  album_class: 'folderloadingalbum',  //must have class in tagname
+  //support: % or px, image as max-size, '400px 600px', '80% 90%', as height width, '80%' as both height & width.
+  box_size: '80%',
+  refer_attribute: 'src',
+  //must have class in tagname
+  album_class: 'imageinpost',
   album_nav_prev: 'https://lh6.googleusercontent.com/jMT6fQTD3or2QoycMWsfvnSe605XYh2lP1z5yT6x6i_BMzrFxsT6Qxe1_mjzH55ViKY',
   album_nav_next: 'https://lh6.googleusercontent.com/_b3BLS9a2rwHQ4yiO6iWEKxG92mZ3CHojOi6z0P4Vc78kSZBUzrPkcUPEMyCklg1nR4',
   album_nav_distance: 60,
